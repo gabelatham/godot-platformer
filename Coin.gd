@@ -4,7 +4,7 @@ signal coin_collected
 
 func _ready():
 	$AnimatedSprite.playing = true
-	
+
 
 func _on_Coin_body_entered(_body):
 	emit_signal("coin_collected")

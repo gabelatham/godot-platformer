@@ -63,5 +63,6 @@ collision_mask = 0
 position = Vector2( 0, 2.75 )
 shape = SubResource( 4 )
 
-[connection signal="body_entered" from="Deathbox" to="." method="_on_Hitbox_body_entered"]
 [connection signal="body_entered" from="Deathbox" to="." method="_on_Deathbox_body_entered"]
+[connection signal="body_entered" from="Deathbox" to="." method="_on_Hitbox_body_entered"]
+[connection signal="body_entered" from="Hitbox" to="." method="_on_Hitbox_body_entered"]
