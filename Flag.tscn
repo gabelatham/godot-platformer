@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://assets/terrain/tiles_packed.png" type="Texture" id=1]
+[ext_resource path="res://Flag.gd" type="Script" id=2]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 1 )
+region = Rect2( 198, 90, 18, 18 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 1 )
+region = Rect2( 216, 90, 18, 18 )
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ) ],
+"loop": true,
+"name": "wind",
+"speed": 3.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 10, 9 )
+
+[node name="Flag" type="Area2D"]
+scale = Vector2( 3, 3 )
+collision_layer = 0
+collision_mask = 8
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 3 )
+animation = "wind"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 4 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0, 18 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 198, 108, 18, 18 )
+
+[connection signal="body_entered" from="." to="." method="_on_Flag_body_entered"]

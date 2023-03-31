@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://assets/terrain/tiles_packed.png" type="Texture" id=1]
+[ext_resource path="res://Coin.gd" type="Script" id=2]
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 1 )
+region = Rect2( 199, 127, 16, 16 )
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 1 )
+region = Rect2( 217, 127, 16, 16 )
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ SubResource( 2 ), SubResource( 3 ) ],
+"loop": true,
+"name": "Spinning",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 6, 6 )
+
+[node name="Coin" type="Area2D"]
+scale = Vector2( 3, 3 )
+collision_layer = 0
+collision_mask = 8
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 1 )
+animation = "Spinning"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 4 )
+
+[connection signal="body_entered" from="." to="." method="_on_Coin_body_entered"]
