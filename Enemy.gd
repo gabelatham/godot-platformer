@@ -5,9 +5,9 @@ signal damage
 
 var velocity = Vector2.ZERO
 
+var detects_cliffs = true
 export var speed = 50
 export var direction = -1
-export var detects_cliffs = true
 export var damaging = false
 
 func _ready():
@@ -19,7 +19,9 @@ func _ready():
 	if damaging:
 		modulate.g = 0
 		modulate.b = 0
-		# Set the collision layer if able to damage
+		$Hitbox/CollisionShape2D.disabled = false
+	else:
+		$Hitbox/CollisionShape2D.disabled = true
 
 
 func _physics_process(delta):
@@ -42,5 +44,5 @@ func _on_Deathbox_body_entered(body):
 	queue_free()
 
 
-func _on_Hitbox_body_entered(body):
+func _on_Hitbox_body_entered(_body):
 	emit_signal("damage")

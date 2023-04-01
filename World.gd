@@ -1,12 +1,13 @@
 extends Node2D
 
 var coins = 0
-var health = 3
+var lives = 3
 export var key = false
-
+#Fix lives not being taken away
 func _ready():
 	if key:
 		$Flag.to_front()
+	print($Coin.get_owner())
 
 func _on_KillPlane_body_entered(_body):
 	$Player.position.x = 30
@@ -33,4 +34,6 @@ func _on_Flag_flag_touched():
 
 
 func _on_Enemy2_damage():
-	health -= 1
+	lives -= 1
+	
+	$Player/Camera2D/HUD.update_lives(lives)

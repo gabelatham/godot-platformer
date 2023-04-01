@@ -25,7 +25,7 @@ extents = Vector2( 12, 9.25 )
 extents = Vector2( 11, 1.25 )
 
 [sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 13.5, 9.25 )
+extents = Vector2( 12.5, 9.25 )
 
 [node name="Enemy" type="KinematicBody2D"]
 scale = Vector2( 2, 2 )
@@ -56,13 +56,12 @@ position = Vector2( 0, -7.75 )
 shape = SubResource( 3 )
 
 [node name="Hitbox" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 0
+collision_layer = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2( 0, 2.75 )
 shape = SubResource( 4 )
 
-[connection signal="body_entered" from="Deathbox" to="." method="_on_Deathbox_body_entered"]
 [connection signal="body_entered" from="Deathbox" to="." method="_on_Hitbox_body_entered"]
+[connection signal="body_entered" from="Deathbox" to="." method="_on_Deathbox_body_entered"]
 [connection signal="body_entered" from="Hitbox" to="." method="_on_Hitbox_body_entered"]

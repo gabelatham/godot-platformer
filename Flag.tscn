@@ -38,7 +38,7 @@ animation = "wind"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 4 )
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="FlagBase" type="Sprite" parent="."]
 position = Vector2( 0, 18 )
 texture = ExtResource( 1 )
 region_enabled = true
