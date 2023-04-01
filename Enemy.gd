@@ -5,6 +5,7 @@ signal damage
 
 var velocity = Vector2.ZERO
 
+var life = true
 var detects_cliffs = true
 export var speed = 50
 export var direction = -1
@@ -36,13 +37,16 @@ func _physics_process(delta):
 func _on_Deathbox_body_entered(body):
 	speed = 0
 	$AnimatedSprite.play('dead')
+	$Squash.play()
 	set_collision_layer_bit(2, false)
 	set_collision_mask_bit(0, false)
 	$Deathbox.set_collision_mask_bit(0, false)
 	body.bounce()
+	life = false
 	yield(get_tree().create_timer(2), "timeout")
 	queue_free()
 
 
 func _on_Hitbox_body_entered(_body):
-	emit_signal("damage")
+	if life:
+		emit_signal("damage")

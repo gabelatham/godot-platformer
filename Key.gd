@@ -4,6 +4,7 @@ signal key_collected
 
 func _on_Key_body_entered(_body):
 	emit_signal("key_collected")
+	$Collect.play()
 	set_collision_mask_bit(3, false)
 	var desired = 0
 	var rate = 0.5

@@ -8,6 +8,7 @@ func _ready():
 
 func _on_Coin_body_entered(_body):
 	emit_signal("coin_collected")
+	$Collect.play()
 	set_collision_mask_bit(3, false)
 	var desired = 0
 	var rate = 0.5
